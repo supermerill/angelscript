@@ -96,34 +96,62 @@ jobs:
         cd ${{github.workspace}}/sdk/tests/test_feature/bin
         ./test_feature.exe
 
-  MacOS_arm64_Clang:
+  MacOS_arm64_Clang_debug:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v4
     - name: build angelscript & test_feature
       run: |
         cd $GITHUB_WORKSPACE/sdk/tests/test_feature/projects/cmake
-        cmake .
+        cmake . -DCMAKE_BUILD_TYPE=Debug
         cmake --build .
     - name: run test_feature
       run: |
         cd $GITHUB_WORKSPACE/sdk/tests/test_feature/bin
         ./test_feature
 
-  MacOS_x86-64_Clang:
+  MacOS_arm64_Clang_release:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: build angelscript & test_feature
+      run: |
+        cd $GITHUB_WORKSPACE/sdk/tests/test_feature/projects/cmake
+        cmake . -DCMAKE_BUILD_TYPE=Release
+        cmake --build .
+    - name: run test_feature
+      run: |
+        cd $GITHUB_WORKSPACE/sdk/tests/test_feature/bin
+        ./test_feature
+
+  MacOS_x86-64_Clang_debug:
     runs-on: macos-15-intel
     steps:
     - uses: actions/checkout@v4
     - name: build angelscript & test_feature
       run: |
         cd $GITHUB_WORKSPACE/sdk/tests/test_feature/projects/cmake
-        cmake .
+        cmake . -DCMAKE_BUILD_TYPE=Debug
         cmake --build .
     - name: run test_feature
       run: |
         cd $GITHUB_WORKSPACE/sdk/tests/test_feature/bin
-        ./test_feature        
+        ./test_feature
         
 
+  MacOS_x86-64_Clang_release:
+    runs-on: macos-15-intel
+    steps:
+    - uses: actions/checkout@v4
+    - name: build angelscript & test_feature
+      run: |
+        cd $GITHUB_WORKSPACE/sdk/tests/test_feature/projects/cmake
+        cmake . -DCMAKE_BUILD_TYPE=Release
+        cmake --build .
+    - name: run test_feature
+      run: |
+        cd $GITHUB_WORKSPACE/sdk/tests/test_feature/bin
+        ./test_feature
+        
 
         
