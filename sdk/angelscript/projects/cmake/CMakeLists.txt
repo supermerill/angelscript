@@ -12,6 +12,9 @@ endif()
 
 if(APPLE)
     option(BUILD_FRAMEWORK "Build Framework bundle for OSX" OFF)
+    if(CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64")
+        add_compile_definitions(AS_MAX_PORTABILITY)
+    endif()
 endif()
 
 file(READ ../../include/angelscript.h ANGELSCRIPT_H)
